@@ -14,6 +14,13 @@ public class Nodo<T>{
      */
     public Nodo<T> siguiente;
     /**
+     * Este es el constructor por deault, inicializa las variables dato y siguiente en null
+     **/
+    public Nodo(){
+        dato = null;
+	siguiente = null;
+	}
+    /**
      * Este es el constructor que inicializa el dato 
      * en un valor especifico
      * @param dato es el dato a inicializar

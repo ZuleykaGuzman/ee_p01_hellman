@@ -58,6 +58,20 @@ public class ListaLigada<T> {
         }
     }
     /**
+     * Este metodo elimina el primer nodo de la lista
+     * @return el dato que se elimino
+     */
+    public T elimina_primero(){
+        Nodo <T> aux = inicio;
+        if (inicio == null){
+           System.out.println ("Lista vacía.");
+        }else{
+            inicio = inicio.getSiguiente();
+            aux.setSiguiente(null);  
+        }
+        return aux.getDato();
+    }
+    /**
      * Este metodo recorre la lista
      * @return cada nodo de la lista
      */
