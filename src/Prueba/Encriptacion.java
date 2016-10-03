@@ -9,6 +9,7 @@ import java.util.Random;
  */
 public class Encriptacion{
     private BigInteger q,r;
+    private char c;
     private Nodo<BigInteger> aux= new Nodo<BigInteger>();
     private BigInteger mensajeEncriptado=new BigInteger("0");
     private ListaLigada<BigInteger> lista01=new ListaLigada<BigInteger>();
@@ -17,7 +18,14 @@ public class Encriptacion{
     private ListaLigada<BigInteger> listaAux2=new ListaLigada<BigInteger>();
     private ListaLigada<Character> listaCadena= new ListaLigada<Character>();
     private ListaLigada<BigInteger> llavePublica=new ListaLigada<BigInteger>();
+    
+    public char getC() {
+        return c;
+    }
 
+    public void setC(char c) {
+        this.c = c;
+    }
     /**
      * Este es el get de la lista01
      * @return lista01
@@ -191,7 +199,7 @@ public class Encriptacion{
     }
     /**
      * En este metodo se desencripta el mensaje creando una variable y de tipo BigInteger, 
-     * a la cual se leasigna un valor segun la formula necesaria para desencriptar nuestro mensaje.
+     * a la cual se le asigna un valor segun la formula necesaria para desencriptar nuestro mensaje.
      * Despues comparamos cada uno de los elementos de la lista auxiliar con y, 
      * si es menor se resta "y" y se le agrega un 1 a la cadena s, si no se agrega un 0
      * Despues sacamos un valor en codigo ascci de esa cadena y posteriormente convertimos
@@ -229,8 +237,9 @@ public class Encriptacion{
         }
         System.out.println(cadena);
         System.out.println(x);
-        
+        c=x;
         mensajeEncriptado = new BigInteger("0");
+        y = new BigInteger("0");
     }
     /**
      * Este es el metodo main en el cual se mandan a llamar  al metodo generarLlaves()
