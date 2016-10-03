@@ -37,8 +37,12 @@ public class ConexionServidor implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
+            String mensajeT = tfMensaje.getText();
+            
+            if(mensajeT.length()!= 0) {
             salidaDatos.writeUTF(usuario + " >>> " + tfMensaje.getText() + "     " + ((new Date().getHours()>12)?new Date().getHours()%12+ " : " + new Date().getMinutes() + " PM":new Date().getHours() + " : " + new Date().getMinutes() + " AM")  );
             tfMensaje.setText("");
+            }
         } catch (IOException ex) {
             System.out.println("Error al intentar enviar un mensaje: " + ex.getMessage());
         }

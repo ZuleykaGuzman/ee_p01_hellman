@@ -1,20 +1,16 @@
 
 package Prueba;
 
+import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zuleyka Guzman, Jazmin Valentin, Ingrid Lopez, Gabriela Martinez
  */
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-
-/**
- *
- * @author Mario
- */
 public class ServidorChat {
- 
     
     public static void main(String[] args) {
         
@@ -33,8 +29,7 @@ public class ServidorChat {
             while (true) {
                 System.out.println("Servidor a la espera de conexiones.");
                 socket = servidor.accept();
-                System.out.println("Cliente con la IP " + socket.getInetAddress().getHostName() + " conectado.");
-                
+                System.out.println(socket.getInetAddress().getHostName() + " ● in line");
                 ConexionCliente cc = new ConexionCliente(socket, mensajes);
                 cc.start();
                 

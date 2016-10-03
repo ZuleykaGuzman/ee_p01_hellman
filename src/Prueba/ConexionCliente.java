@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Zuleyka Guzman, Jazmin Valentin, Ingrid Lopez, Gabriela Martinez
  */
 public class ConexionCliente extends Thread implements Observer{
-
     private Socket socket; 
     private MensajesChat mensajes;
     private DataInputStream entradaDatos;
@@ -46,7 +46,8 @@ public class ConexionCliente extends Thread implements Observer{
                 // a sus observadores que hay un nuevo mensaje.
                 mensajes.setMensaje(mensajeRecibido);
             } catch (IOException ex) {
-                 System.out.println("Cliente con la IP " + socket.getInetAddress().getHostName() + " desconectado.");
+                
+                System.out.println(socket.getInetAddress().getHostName() + " ○ off line");
                 conectado = false; 
                 // Si se ha producido un error al recibir datos del cliente se cierra la conexion con el.
                 try {

@@ -1,12 +1,11 @@
 
 package Prueba;
 
+import static Prueba.Cliente.jButton1;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -27,21 +26,22 @@ public class Cliente extends javax.swing.JFrame {
         setTitle("Chat seguro");
         
         
-        host ="192.168.1.67";  //Vista1.jTextField1.getText();
+        host =  "192.168.137.1";//Vista1.jTextField1.getText();
         puerto = 5000;
-        usuario = "Usuario"; // Vista1.jTextField2.getText();
+        usuario =  "mario";//Vista1.jTextField2.getText();
          
-         mostrarMensaje("Conectado a " + host + " en el puerto " + puerto + " con el nombre de ususario: " + usuario + ".");
+         mostrarMensaje("Conectado a " + usuario + ".");
         
-        // Se crea el socket para conectar con el Sevidor del Chat
-        try {
+        // Se crea el socket para conectar con el Sevidor del Chat       
+         try {
             socket = new Socket(host, puerto);
         } catch (UnknownHostException ex) {
              mostrarMensaje("No se ha podido conectar con el servidor (" + ex.getMessage() + ").");
         } catch (IOException ex) {
              mostrarMensaje("No se ha podido conectar con el servidor (" + ex.getMessage() + ").");
         }
-        jButton1.addActionListener(new ConexionServidor(socket, jTextField1, usuario));
+        jButton1.addActionListener(new ConexionServidor(socket, jTextField1, usuario));    
+        
     }
 
     /**
@@ -135,7 +135,7 @@ public class Cliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
+   this.dispose();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Vista1().setVisible(true);
@@ -153,7 +153,6 @@ public class Cliente extends javax.swing.JFrame {
         
     public void recibirMensajesServidor(){
         // Obtiene el flujo de entrada del socket
-        
         String mensaje;
         try {
             entradaDatos = new DataInputStream(socket.getInputStream());
@@ -168,7 +167,7 @@ public class Cliente extends javax.swing.JFrame {
         while (conectado) {
             try {
                 mensaje = entradaDatos.readUTF();
-                mostrarMensaje(mensaje + System.lineSeparator());
+                mostrarMensaje(mensaje);
             } catch (IOException ex) {
                 mostrarMensaje("Error al leer del stream de entrada: " + ex.getMessage());
                 conectado = false;
@@ -214,7 +213,7 @@ public class Cliente extends javax.swing.JFrame {
               c.recibirMensajesServidor();
        
     }
-
+    private javax.swing.JPanel jPanel1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
